@@ -1,5 +1,5 @@
-import { Meta, StoryFn } from "@storybook/vue3";
 import InputRegular from "./InputRegular.vue";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   title: "generics/inputs",

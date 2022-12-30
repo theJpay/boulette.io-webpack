@@ -1,6 +1,6 @@
-import { Meta, StoryFn } from "@storybook/vue3";
 import { StorySlot } from "../../storybook";
 import CardBorder from "./CardBorder.vue";
+import type { Meta, StoryFn } from "@storybook/vue3";
 
 export default {
   title: "generics/containers",
