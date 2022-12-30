@@ -8,7 +8,7 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
-import { useAuthState, signOut as signOutUser } from "@/services/users";
+import { signOut as signOutUser, useAuthState } from "@/services/users";
 import { LinkAction } from "@/components/generics/actions";
 
 export default defineComponent({

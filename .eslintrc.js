@@ -38,6 +38,7 @@ module.exports = {
     ],
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "sort-imports": ["error", { ignoreDeclarationSort: true }],
     "@typescript-eslint/consistent-type-imports": "warn",
     "@typescript-eslint/no-unused-vars": ["error"],
   },
