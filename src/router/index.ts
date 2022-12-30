@@ -1,7 +1,9 @@
+import { createRouter, createWebHistory } from "vue-router";
 import tools from "@/tools";
-import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import appRoutes from "../views/app/routes";
 import LoginView from "../views/LoginView.vue";
+import RegisterView from "../views/RegisterView.vue";
+import type { RouteRecordRaw } from "vue-router";
 
 const IS_AUTHED = false;
 
@@ -18,6 +20,15 @@ const routes: Array<RouteRecordRaw> = [
     component: LoginView,
     beforeEnter: () => {
       tools.setTabName("Login");
+    },
+    meta: { requiresUnAuth: true },
+  },
+  {
+    path: "/register",
+    name: "register",
+    component: RegisterView,
+    beforeEnter: () => {
+      tools.setTabName("Register");
     },
     meta: { requiresUnAuth: true },
   },
