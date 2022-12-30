@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/:catchAll(.*)",
-    redirect: { name: "app" },
+    redirect: { name: "home" },
   },
 ];
 
