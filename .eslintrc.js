@@ -10,18 +10,42 @@ module.exports = {
     "@vue/typescript/recommended",
     "plugin:prettier/recommended",
     "plugin:storybook/recommended",
+    "plugin:import/errors",
+    "plugin:import/warnings",
   ],
   parserOptions: {
     ecmaVersion: 2020,
   },
   rules: {
+    "import/order": [
+      "warn",
+      {
+        groups: [
+          ["builtin"],
+          ["external"],
+          ["parent", "sibling", "object", "internal", "index"],
+          ["type"],
+        ],
+        "newlines-between": "ignore",
+        pathGroups: [
+          {
+            pattern: "@/**",
+            group: "external",
+            position: "after",
+          },
+        ],
+      },
+    ],
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
     "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off",
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/no-unused-vars": ["error"],
   },
   overrides: [
     {
       files: ["*.vue"],
       rules: {
+        "vue/attribute-hyphenation": ["error", "never"],
         "vue/attributes-order": [
           "error",
           {
@@ -30,6 +54,11 @@ module.exports = {
         ],
         "vue/require-default-prop": "off",
         "vue/sort-keys": ["error", "asc"],
+        "vue/v-on-event-hyphenation": [
+          "error",
+          "always",
+          { ignore: ["update:modelValue"] },
+        ],
       },
     },
     {
@@ -37,4 +66,12 @@ module.exports = {
       rules: {},
     },
   ],
+  settings: {
+    "import/resolver": {
+      alias: {
+        map: [["@", "./src"]],
+        extensions: [".ts", ".vue"],
+      },
+    },
+  },
 };
