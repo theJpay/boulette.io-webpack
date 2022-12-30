@@ -1,11 +1,10 @@
 import { createRouter, createWebHistory } from "vue-router";
 import tools from "@/tools";
+import { getUserState } from "@/services/users";
 import appRoutes from "../views/app/routes";
 import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import type { RouteRecordRaw } from "vue-router";
-
-const IS_AUTHED = false;
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -47,16 +46,18 @@ const router = createRouter({
   routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
+  const isAuthenticated = await getUserState();
+  console.log({ isAuthenticated });
   const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
   const requiresUnAuth = to.matched.some(
     (record) => record.meta.requiresUnAuth
   );
-  if (requiresAuth && !IS_AUTHED) {
+  if (requiresAuth && !isAuthenticated) {
     next({ name: "login" });
     return;
   }
-  if (requiresUnAuth && IS_AUTHED) {
+  if (requiresUnAuth && isAuthenticated) {
     next({ name: "home" });
     return;
   }

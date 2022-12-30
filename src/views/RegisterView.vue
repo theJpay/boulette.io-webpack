@@ -19,6 +19,7 @@ import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { ButtonRegular, LinkAction } from "@/components/generics/actions";
 import { FormCard } from "@/components/userForm";
+import { createUser } from "@/services/users";
 
 const LOGIN_FIELDS = [
   {
@@ -61,8 +62,9 @@ export default defineComponent({
     const goToLogin = () => {
       router.push({ name: "login" });
     };
-    const register = () => {
-      console.log("Register", form.value);
+    const register = async () => {
+      await createUser(form.value.email, form.value.password);
+      router.push({ name: "home" });
     };
 
     return { config, form, goToLogin, register };

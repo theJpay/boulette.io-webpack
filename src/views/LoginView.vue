@@ -18,6 +18,7 @@ import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { ButtonRegular } from "@/components/generics/actions";
 import { FormCard } from "@/components/userForm";
+import { signIn } from "@/services/users";
 
 const LOGIN_FIELDS = [
   {
@@ -45,8 +46,9 @@ export default defineComponent({
       password: "",
     });
 
-    const login = () => {
-      console.log("Login", form.value.email, form.value.password);
+    const login = async () => {
+      await signIn(form.value.email, form.value.password);
+      router.push({ name: "home" });
     };
     const goToRegister = () => {
       router.push({ name: "register" });
