@@ -53,6 +53,18 @@ module.exports = {
             alphabetical: true,
           },
         ],
+        "vue/html-self-closing": [
+          "error",
+          {
+            html: {
+              void: "always",
+              normal: "always",
+              component: "always",
+            },
+            svg: "always",
+            math: "always",
+          },
+        ],
         "vue/require-default-prop": "off",
         "vue/sort-keys": ["error", "asc"],
         "vue/v-on-event-hyphenation": [
