@@ -1,30 +1,22 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
   <router-view />
 </template>
 
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import "./assets/css/colors.scss";
+
+body {
+  margin: 0;
 }
 
-nav {
-  padding: 30px;
+#app {
+  min-height: 100vh;
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+  background-color: var(--neutral-25);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>
