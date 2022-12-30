@@ -1,9 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-@import "../../src/assets/css/colors.scss";
+@import "../../src/assets/css/style.scss";
 
 body {
-  height: 100vh !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  height: 100vh !important;
 }
