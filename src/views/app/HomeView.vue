@@ -1,14 +1,19 @@
 <template>
-  <div class="about">
-    <h1>Hello {{ user?.email }}</h1>
+  <div class="home">
+    <h1>Hello {{ user?.email }}, {{ user?.emailVerified }}</h1>
     <LinkAction title="Sign out" @click="signOut()" />
+    <LinkAction title="Verification email" @click="onSendVerificationEmail()" />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import { useRouter } from "vue-router";
-import { signOut as signOutUser, useAuthState } from "@/services/users";
+import {
+  sendVerificationEmail,
+  signOut as signOutUser,
+  useAuthState,
+} from "@/services/users";
 import { LinkAction } from "@/components/generics/actions";
 
 export default defineComponent({
@@ -23,7 +28,20 @@ export default defineComponent({
       router.push({ name: "login" });
     };
 
-    return { signOut, user };
+    const onSendVerificationEmail = async () => {
+      await sendVerificationEmail();
+    };
+
+    return { onSendVerificationEmail, signOut, user };
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+</style>
