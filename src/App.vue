@@ -13,6 +13,7 @@ body {
 #app {
   min-height: 100vh;
 
+  font-size: 14px;
   font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
 
   background-color: var(--neutral-5);
