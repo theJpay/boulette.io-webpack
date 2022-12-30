@@ -11,7 +11,6 @@
         </div>
       </template>
     </FormCard>
-    {{ form }}
   </div>
 </template>
 

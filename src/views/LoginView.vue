@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, ref } from "vue";
 import { useRouter } from "vue-router";
 import { ButtonRegular } from "@/components/generics/actions";
 import { FormCard } from "@/components/userForm";
@@ -40,13 +40,13 @@ export default defineComponent({
     const router = useRouter();
 
     const config = ref(LOGIN_FIELDS);
-    const form = reactive({
+    const form = ref({
       email: "",
       password: "",
     });
 
     const login = () => {
-      console.log("Login", form.email, form.password);
+      console.log("Login", form.value.email, form.value.password);
     };
     const goToRegister = () => {
       router.push({ name: "register" });
