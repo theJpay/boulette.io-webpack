@@ -8,13 +8,15 @@ export default {
     disabled: { type: "boolean" },
     impact: {
       control: { type: "select" },
-      options: ["high", "medium"],
+      options: ["high", "medium", "low"],
     },
     title: { type: "string" },
+    onClick: { action: "click", table: { disable: true } },
   },
 } as Meta<typeof ButtonRegular>;
 
 type ButtonRegularProps = InstanceType<typeof ButtonRegular>["$props"];
+
 export const ButtonRegularStory: StoryFn<typeof ButtonRegular> = (args) => ({
   components: { ButtonRegular },
   setup() {

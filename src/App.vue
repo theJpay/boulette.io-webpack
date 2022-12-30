@@ -15,7 +15,7 @@ body {
 
   font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
 
-  background-color: var(--neutral-25);
+  background-color: var(--neutral-5);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

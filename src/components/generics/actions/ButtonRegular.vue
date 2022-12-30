@@ -6,6 +6,7 @@
       disabled,
     }"
     type="button"
+    @click.prevent="onClick()"
   >
     {{ title }}
   </button>
@@ -14,7 +15,7 @@
 <script lang="ts">
 import { defineComponent, PropType } from "vue";
 
-type ButtonImpact = "high" | "medium";
+type ButtonImpact = "high" | "medium" | "low";
 
 export default defineComponent({
   props: {
@@ -24,6 +25,15 @@ export default defineComponent({
       default: "high",
     },
     title: String,
+  },
+  emits: ["click"],
+  setup(props, { emit }) {
+    const onClick = () => {
+      if (props.disabled) return;
+      emit("click");
+    };
+
+    return { onClick };
   },
 });
 </script>
@@ -77,9 +87,18 @@ export default defineComponent({
   &.medium-impact {
     @include buttonRegularColors(
       var(--primary-500),
+      var(--primary-50),
       var(--primary-100),
-      var(--primary-200),
       var(--neutral-25)
+    );
+  }
+
+  &.low-impact {
+    @include buttonRegularColors(
+      var(--primary-500),
+      transparent,
+      var(--primary-100),
+      transparent
     );
   }
 
