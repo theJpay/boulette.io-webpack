@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import tools from "@/tools";
 import { getUserState } from "@/services/users";
 import appRoutes from "../views/app/routes";
+import AppView from "../views/AppView.vue";
 import LoginView from "../views/LoginView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import type { RouteRecordRaw } from "vue-router";
@@ -9,6 +10,7 @@ import type { RouteRecordRaw } from "vue-router";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
+    component: AppView,
     children: [...buildAppRoutes()],
     redirect: { name: "home" },
     meta: { requiresAuth: true },
