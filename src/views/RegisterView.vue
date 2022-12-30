@@ -63,7 +63,11 @@ export default defineComponent({
       router.push({ name: "login" });
     };
     const register = async () => {
-      await createUser(form.value.email, form.value.password);
+      await createUser(
+        form.value.email,
+        form.value.password,
+        form.value.pseudo
+      );
       router.push({ name: "home" });
     };
 

@@ -1,8 +1,12 @@
 <template>
   <div class="home">
-    <h1>Hello {{ user?.email }}, {{ user?.emailVerified }}</h1>
+    <h1>Hello {{ user?.displayName }}</h1>
     <LinkAction title="Sign out" @click="signOut()" />
-    <LinkAction title="Verification email" @click="onSendVerificationEmail()" />
+    <LinkAction
+      v-if="!isVerified"
+      title="Verification email"
+      @click="onSendVerificationEmail()"
+    />
   </div>
 </template>
 
@@ -21,9 +25,10 @@ export default defineComponent({
   setup() {
     const router = useRouter();
 
-    const { user } = useAuthState();
+    const { user, isVerified } = useAuthState();
 
     const signOut = async () => {
+      console.log(user.value);
       await signOutUser();
       router.push({ name: "login" });
     };
@@ -32,7 +37,7 @@ export default defineComponent({
       await sendVerificationEmail();
     };
 
-    return { onSendVerificationEmail, signOut, user };
+    return { isVerified, onSendVerificationEmail, signOut, user };
   },
 });
 </script>

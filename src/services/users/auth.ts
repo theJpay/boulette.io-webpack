@@ -5,6 +5,7 @@ import {
   sendEmailVerification,
   signInWithEmailAndPassword,
   signOut as signOutUser,
+  updateProfile,
 } from "firebase/auth";
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import type { Unsubscribe, User } from "firebase/auth";
@@ -25,8 +26,9 @@ export function useAuthState() {
   onUnmounted(() => unsubscribe());
 
   const isAuthenticated = computed(() => user.value != null);
+  const isVerified = computed(() => !!user.value?.emailVerified);
 
-  return { user, error, isAuthenticated };
+  return { user, error, isAuthenticated, isVerified };
 }
 
 export async function getUserState() {
@@ -53,11 +55,16 @@ export async function signOut() {
   }
 }
 
-export async function createUser(email: string, password: string) {
+export async function createUser(
+  email: string,
+  password: string,
+  displayName: string
+) {
   try {
     const auth = getAuth();
     const newUser = await createUserWithEmailAndPassword(auth, email, password);
     await sendEmailVerification(newUser.user);
+    await updateProfile(newUser.user, { displayName });
   } catch (error) {
     console.log(error);
   }
